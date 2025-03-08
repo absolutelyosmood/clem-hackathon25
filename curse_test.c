@@ -11,6 +11,14 @@ int glob_x = 0;
 int switch_pos = 10;
 int glob_y = 0;
 
+void clearBox(int startY, int startX, int height, int width) {
+    for (int y = startY; y < startY + height; y++) {
+        for (int x = startX; x < startX + width; x++) {
+            mvaddch(y, x, ' ');
+        }
+    }
+}
+
 int main(int argc, char *argv[])
 {
   setup_curses();
