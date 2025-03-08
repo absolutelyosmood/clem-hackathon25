@@ -6,6 +6,7 @@
 /*
 have an array of potential values
 access each one through a %
+keep
 */
 
 
@@ -13,7 +14,9 @@ void setup_curses();
 void unset_curses();
 void update();
 
-#define PLAYER_MAX_TICK 5
+#define FPS 30
+
+#define PLAYER_MAX_TICK 60
 #define PLAYER_BASE_X 0
 #define PLAYER_BASE_Y 10
 #define PLAYER_BASE_JUMP 10
@@ -40,6 +43,7 @@ void playerCreate(ObjPlayer *player) {
     player->box.width = 7;
     player->box.height = 6;
     player->box.str = playerStrAsset;
+    return;
 }
 
 void playerDraw(ObjPlayer *player) {
@@ -56,19 +60,33 @@ void playerDraw(ObjPlayer *player) {
     }
 }
 
+objBox cactus = {100, 1, "                                                                                                    "};
+
+void cactusSpawn(int y) {
+    cactus.str[cactus.width - 1] = '|';
+}
+
 
 int main() {
-    int x = 0;
     setup_curses();
-
+    
     ObjPlayer player;
     playerCreate(&player);
+
+    char groundStr[] = {'=','=','-','-','+','+','-','-','=','='};
+    //objBoxFill(PLAYER_BASE_Y + player.box.width - 1,0,100,1,'=');
+    objBox ground = {.width=10,.height=1,.str=groundStr};
+    
+    char input;
     while(TRUE) {
-        if (x == 5 && player.jump == 0) {
+        input = getch();
+        if (input == ' ') {
             player.jump = 1;
         }
 
-        x = (x + 1) % 15;
+        objBoxDraw(&ground,5,5);
+        objBoxShift(&ground);
+
         playerDraw(&player);
         update();
     }
@@ -78,7 +96,7 @@ int main() {
 
 void update(){
     refresh();
-    sleep(1); 
+    napms(1000 / FPS);
 }
 
 
@@ -95,6 +113,7 @@ void setup_curses() {
     noecho();
     // needed for cursor keys (even though says keypad)
     keypad(stdscr, true);
+    nodelay(stdscr, TRUE);
 }
   
   
