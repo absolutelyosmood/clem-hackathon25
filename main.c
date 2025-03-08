@@ -17,11 +17,13 @@ ObjPlayer player;
 int main() {
     setup_curses();
 
+    enemyBufferInit();
     groundCreate(&ground);
     playerCreate(&player);
 
+    enemySpawn();
     
-    int alive = TRUE;
+    int alive = TRUE, collision = 0;
     char input;
     while(alive) {
         input = getch();
@@ -31,6 +33,10 @@ int main() {
 
         playerDraw(&player);
         groundDraw(&ground,PLAYER_Y + player.frame.height);
+        collision = enemyDraw();
+        if (collision == 1 && player.jump == 0) {
+            alive = FALSE;
+        }
 
         update();
     }

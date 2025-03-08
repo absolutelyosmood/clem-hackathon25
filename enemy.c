@@ -32,23 +32,29 @@ if enemy exist get its shift amount
 
 return value indicating if it passes a given x value
 */
-void enemyDraw() {
+int enemyDraw() {
+    int collisionDetected = 0;
+
     for (int i = 0; i < ENEMY_MAX_SPAWN; i++) {
-        if (EnemyBuffer[i].spawned == 1 && EnemyBuffer[i].xPos > ENEMY_DESPAWN_X) {
+        if (EnemyBuffer[i].spawned == 1) {
             objBoxClear(&EnemyBuffer[i].frame,ENEMY_BASE_Y,EnemyBuffer[i].xPos);
 
-            EnemyBuffer[i].xPos - EnemyBuffer[i].speed;
+            EnemyBuffer[i].xPos = EnemyBuffer[i].xPos - EnemyBuffer[i].speed;
             objBoxDraw(&EnemyBuffer[i].frame,ENEMY_BASE_Y,EnemyBuffer[i].xPos);
-        }
-        else {
-            EnemyBuffer[i].spawned = 0;
+
+            if (EnemyBuffer[i].xPos < ENEMY_COLLISION_X) {
+                collisionDetected = 1;
+            }
         }
     }
+
+    return collisionDetected;
 }
 
 void enemySpawn() {
     int i = enemyFindEmptySlot();
     if (i != -1) {
+        EnemyBuffer[i].spawned = 1;
         EnemyBuffer[i].speed = 1;
         EnemyBuffer[i].tickCur = 0;
         EnemyBuffer[i].xPos = 100;

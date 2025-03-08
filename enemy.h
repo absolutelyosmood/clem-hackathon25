@@ -1,10 +1,10 @@
 #include "objBox.h"
 #include "player.h"
 
-#define ENEMY_BASE_Y 0
+#define ENEMY_BASE_Y 9
 #define ENEMY_START_X 100
 #define ENEMY_MAX_SPAWN 5
-#define ENEMY_DESPAWN_X 10
+#define ENEMY_COLLISION_X 10
 
 static char cactusFrame[] = {
     ' ', ' ',  ' ', '/', '\\', ' ', ' ', ' ',
@@ -24,7 +24,7 @@ typedef ObjEnemy objBird;
 typedef ObjEnemy objCactus;
 
 void enemyBufferInit();
-void enemyDraw();
+int enemyDraw();
 void enemySpawn();
 
 //Method to spawn a cactus moving with the ground
