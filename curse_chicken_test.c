@@ -2,6 +2,7 @@
 #include <unistd.h>
 
 #include "objBox.h"
+#include "player.h"
 
 /*
 have an array of potential values

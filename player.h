@@ -20,3 +20,7 @@ static char playerFrame[] = {
     ' ', '=', '=', '=', '=', ' ', ' ',
     ' ', ' ', ' ', '/', '\\', ' ', ' ',
 };
+
+void playerCreate(ObjPlayer *player, int x, int y);
+void playerJump(ObjPlayer *player);
+void playerDraw(ObjPlayer *player);

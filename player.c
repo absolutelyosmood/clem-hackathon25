@@ -1,5 +1,10 @@
 #include "player.h"
 
+#define PLAYER_MAX_TICK 60
+#define PLAYER_BASE_X 0
+#define PLAYER_BASE_Y 10
+#define PLAYER_BASE_JUMP 10
+
 void playerCreate(ObjPlayer *player, int x, int y) {
     player->jump = 0;
     player->tickCur = 0;
@@ -16,14 +21,14 @@ void playerJump(ObjPlayer *player) {
 
 void playerDraw(ObjPlayer *player) {
     if (player->jump == 1 && player->tickCur < PLAYER_MAX_TICK) {
-        objBoxClear(&player->box,PLAYER_BASE_Y,PLAYER_BASE_X);
-        objBoxDraw(&player->box,PLAYER_BASE_Y - PLAYER_BASE_JUMP,PLAYER_BASE_X);
+        objBoxClear(&player->frame,PLAYER_BASE_Y,PLAYER_BASE_X);
+        objBoxDraw(&player->frame,PLAYER_BASE_Y - PLAYER_BASE_JUMP,PLAYER_BASE_X);
         player->tickCur++;
     }
     else {
         player->jump = 0;
         player->tickCur = 0;
-        objBoxClear(&player->box,PLAYER_BASE_Y - PLAYER_BASE_JUMP,PLAYER_BASE_X);
-        objBoxDraw(&player->box,PLAYER_BASE_Y,PLAYER_BASE_X);
+        objBoxClear(&player->frame,PLAYER_BASE_Y - PLAYER_BASE_JUMP,PLAYER_BASE_X);
+        objBoxDraw(&player->frame,PLAYER_BASE_Y,PLAYER_BASE_X);
     }
 }
