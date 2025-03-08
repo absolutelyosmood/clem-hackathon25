@@ -24,6 +24,7 @@ int main() {
     int alive = TRUE, collision = 0, type;
     char input;
     while(alive) {
+        // Get input from user
         input = getch();
         if (input ==' ') {
             playerJump(&player);
@@ -35,6 +36,7 @@ int main() {
             enemySpawnBird();
         }
 
+        // Draw screen
         playerDraw(&player);
         groundDraw(&ground,PLAYER_Y + player.frame.height);
         collision = enemyDraw(&type);

@@ -1,3 +1,6 @@
+#ifndef _ENEMY_H
+#define _ENEMY_H
+
 #include "objBox.h"
 #include "player.h"
 
@@ -35,7 +38,6 @@ static char birdFrame[] = {
 typedef struct _ObjEnemy {
     int spawned, type;
     int xPos, yPos;
-    int speed;
     objBox frame;
 }ObjEnemy;
 
@@ -44,8 +46,8 @@ typedef ObjEnemy objCactus;
 
 void enemyBufferInit();
 int enemyDraw(int *type);
-
 void enemySpawnCactus();
 void enemySpawnBird();
 
 
+#endif

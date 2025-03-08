@@ -7,6 +7,7 @@ keep a tick cooldown to stop from spawning too many enemys
 #include "enemy.h"
 
 static ObjEnemy EnemyBuffer[ENEMY_MAX_SPAWN];
+static int EnemySpeed = 1;
 
 static int enemyFindEmptySlot() {
     for (int i = 0; i < ENEMY_MAX_SPAWN; i++) {
@@ -40,7 +41,7 @@ int enemyDraw(int *type) {
         if (EnemyBuffer[i].spawned == 1) {
             objBoxClear(&EnemyBuffer[i].frame,EnemyBuffer[i].yPos,EnemyBuffer[i].xPos);
 
-            EnemyBuffer[i].xPos = EnemyBuffer[i].xPos - EnemyBuffer[i].speed;
+            EnemyBuffer[i].xPos = EnemyBuffer[i].xPos - EnemySpeed;
             objBoxDraw(&EnemyBuffer[i].frame,EnemyBuffer[i].yPos,EnemyBuffer[i].xPos);
 
             if (EnemyBuffer[i].xPos <= 0) {
@@ -76,7 +77,6 @@ void enemySpawnCactus() {
 
         EnemyBuffer[i].xPos = 100;
         EnemyBuffer[i].yPos = 10;
-        EnemyBuffer[i].speed = 1;
         EnemyBuffer[i].type = ENEMY_TYPE_CACTUS;
         EnemyBuffer[i].spawned = 1;
     }
@@ -90,7 +90,6 @@ void enemySpawnBird() {
         EnemyBuffer[i].frame.str = birdFrame;
 
         EnemyBuffer[i].xPos = 100;
-        EnemyBuffer[i].speed = 1;
         EnemyBuffer[i].type = ENEMY_TYPE_BIRD;
         EnemyBuffer[i].spawned = 1;
     }
