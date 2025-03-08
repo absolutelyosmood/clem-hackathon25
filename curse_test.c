@@ -2,13 +2,7 @@
 #include <curses.h>
 #include <unistd.h>
 
-typedef struct _objBox {
-  int width, height;
-  char *str;
-} objBox;
-
-void objBoxDraw(objBox *box, int startY, int startX);
-void objBoxClear(objBox *box, int startY, int startX);
+#include "objBox.h"
 
 void setup_curses();
 void unset_curses();
@@ -33,24 +27,6 @@ int main(int argc, char *argv[])
 update is Jumping if it is not already set
 if it is set increment the tick
 */
-
-void objBoxDraw(objBox *box, int startY, int startX) {
-  for (int y = startY; y < startY + box->height; y++) {
-      for (int x = startX; x < startX + box->width; x++) {
-          mvaddch(y, x, box->str[x + y]);
-      }
-  }
-  return;
-}
-
-void objBoxClear(objBox *box, int startY, int startX) {
-  for (int y = startY; y < startY + box->height; y++) {
-      for (int x = startX; x < startX + box->width; x++) {
-          mvaddch(y, x, ' ');
-      }
-  }
-  return;
-}
 
 void update(){
   mvaddch(glob_y, glob_x++, 'a');
