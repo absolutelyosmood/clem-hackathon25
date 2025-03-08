@@ -15,6 +15,8 @@ typedef struct _ObjPlayer {
     objBox frame;
 } ObjPlayer;
 
+#define PLAYER_FRAME_WIDTH 10
+#define PLAYER_FRAME_HEIGHT 6
 static char playerFrame[] = {
     ' ', ' ', ' ',  ' ', ' ', ' ', ' ',  '~', '~', '~',
    '\\', ' ', '_',  '_', '_', '_', '_',  '~', 'o', '>',

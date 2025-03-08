@@ -8,8 +8,8 @@
 void playerCreate(ObjPlayer *player) {
     player->jump = 0;
     player->tickCur = 0;
-    player->frame.width = 7;
-    player->frame.height = 6;
+    player->frame.width = PLAYER_FRAME_WIDTH;
+    player->frame.height = PLAYER_FRAME_HEIGHT;
     player->frame.str = playerFrame;
     return;
 }
