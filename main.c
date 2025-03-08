@@ -3,6 +3,7 @@
 
 #include "player.h"
 #include "ground.h"
+#include "enemy.h"
 
 #define FPS 60
 
@@ -10,15 +11,15 @@ void setup_curses();
 void unset_curses();
 void update();
 
+objBox ground;
+ObjPlayer player;
 
 int main() {
     setup_curses();
 
-    objBox ground;
     groundCreate(&ground);
-
-    ObjPlayer player;
     playerCreate(&player);
+
     
     int alive = TRUE;
     char input;
