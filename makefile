@@ -7,7 +7,7 @@
 #
 
 full: enemy.o objBox.o player.o ground.o 
-	gcc -g main.c enemy.o objBox.o player.o ground.o -lcurses -o game 
+	gcc -g main.c menu.c enemy.o objBox.o player.o ground.o -lcurses -o game 
 
 mwin: enemy.o objBox.o player.o ground.o 
 	gcc -g multi_window_test.c enemy.o objBox.o player.o ground.o -lcurses -o game 
