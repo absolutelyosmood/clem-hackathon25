@@ -35,8 +35,4 @@ void enemyBufferInit();
 int enemyDraw();
 void enemySpawn();
 
-//Method to spawn a cactus moving with the ground
-void cactusCreate();
-//Method to spawn a bird moving with the ground
-void birdCreate();
 

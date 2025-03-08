@@ -1,6 +1,6 @@
 # clem-hackathon25
 
-Hackathon Project: Chicken Runner
+Hackathon Project: Codename: Chicken
 By Archer, Caleb, and Owen
 
 This program uses ncurses to make a chicken-running game using ASCII art. There is also an option
