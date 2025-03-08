@@ -15,7 +15,13 @@ void update();
 
 void GameRuntime();
 int score = 0;
-char score_text[10] = {' ',' ',' ',' ',' ',' ',' ',' ',' '};
+int highscore = 0;
+char score_text[30] = {
+  ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '
+};
+char highscore_text[30] = {
+  ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '
+};
 
 
 int main() {
@@ -59,8 +65,8 @@ void GameRuntime() {
         else if (input == 'x') {
             player.jump = 0;
         }
-        else if (input == 'q') {
-          break;
+        else if (input == 'q' || input == 'r') {
+            alive = FALSE;
         }
 
         // Draw screen
@@ -69,9 +75,15 @@ void GameRuntime() {
         collision = enemyDraw(&type);
         if (type == ENEMY_TYPE_CACTUS && (collision == 1 && player.jump == 0)) {
             alive = FALSE;
+            if (score > highscore){
+              highscore = score;
+            }
         }
         else if (type == ENEMY_TYPE_BIRD && (collision ==1 && player.jump == 1)) {
             alive = FALSE;
+            if (score > highscore){
+              highscore = score;
+            }
         }
 
         update();
@@ -83,8 +95,10 @@ void update(){
     refresh();
     napms(1000 / FPS);
     score++;
-    sprintf(score_text, "Score:%d",score);
-    mvprintw(0, 90, score_text);
+    sprintf(score_text, "Score: %d",score);
+    sprintf(highscore_text, "Highscore: %d",highscore);
+    mvprintw(0, 90, highscore_text);
+    mvprintw(1, 90, score_text);
 }
 
 // Sets up the curses terminal, displaying game output
