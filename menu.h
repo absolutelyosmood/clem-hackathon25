@@ -20,7 +20,7 @@ static char menuText[] = {
 "                             Press Any Key To Start                             "
 };
 
-void objMenuDraw(char*);
+void objMenuDraw();
 
 #endif
 

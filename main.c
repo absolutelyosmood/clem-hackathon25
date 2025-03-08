@@ -4,6 +4,7 @@
 #include "player.h"
 #include "ground.h"
 #include "enemy.h"
+#include "menu.h"
 
 #define FPS 60
 
@@ -16,7 +17,10 @@ void GameRuntime();
 int main() {
     setup_curses();
 
-    GameRuntime();
+    while (TRUE) {
+        objMenuDraw();
+        GameRuntime();
+    }
 
     unset_curses();
 }
