@@ -8,6 +8,7 @@ keep a tick cooldown to stop from spawning too many enemys
 
 static ObjEnemy EnemyBuffer[ENEMY_MAX_SPAWN];
 static int EnemySpeed = 1;
+static int EnemySpawnTick = 0;
 
 static int enemyFindEmptySlot() {
     for (int i = 0; i < ENEMY_MAX_SPAWN; i++) {
@@ -25,6 +26,10 @@ void enemyBufferInit() {
         EnemyBuffer[i].frame.width = 8;
         EnemyBuffer[i].frame.height = 6;
     }
+}
+
+void enemyIncreaseSpeed(int amount) {
+    EnemySpeed += amount;
 }
 
 /*
@@ -55,6 +60,10 @@ int enemyDraw(int *type) {
         }
     }
 
+    if (EnemySpawnTick) {
+        EnemySpawnTick--;
+    }
+    
     return collisionDetected;
 }
 
@@ -68,29 +77,37 @@ int enemyDraw(int *type) {
 //     }
 // }
 
-void enemySpawnCactus() {
-    int i = enemyFindEmptySlot();
-    if (i != -1) {
-        EnemyBuffer[i].frame.height = ENEMY_CACTUS_HEIGHT;
-        EnemyBuffer[i].frame.width = ENEMY_CACTUS_WIDTH;
-        EnemyBuffer[i].frame.str = cactusFrame;
+static void SpawnCactus(int index) {
+    EnemyBuffer[index].frame.height = ENEMY_CACTUS_HEIGHT;
+    EnemyBuffer[index].frame.width = ENEMY_CACTUS_WIDTH;
+    EnemyBuffer[index].frame.str = cactusFrame;
 
-        EnemyBuffer[i].xPos = 100;
-        EnemyBuffer[i].yPos = 10;
-        EnemyBuffer[i].type = ENEMY_TYPE_CACTUS;
-        EnemyBuffer[i].spawned = 1;
-    }
+    EnemyBuffer[index].xPos = 100;
+    EnemyBuffer[index].yPos = 9;
 }
 
-void enemySpawnBird() {
-    int i = enemyFindEmptySlot();
-    if (i != -1) {
-        EnemyBuffer[i].frame.height = ENEMY_BIRD_HEIGHT;
-        EnemyBuffer[i].frame.width = ENEMY_BIRD_WIDTH;
-        EnemyBuffer[i].frame.str = birdFrame;
+static void SpawnBird(int index) {
+    EnemyBuffer[index].frame.height = ENEMY_BIRD_HEIGHT;
+    EnemyBuffer[index].frame.width = ENEMY_BIRD_WIDTH;
+    EnemyBuffer[index].frame.str = birdFrame;
 
-        EnemyBuffer[i].xPos = 100;
-        EnemyBuffer[i].type = ENEMY_TYPE_BIRD;
-        EnemyBuffer[i].spawned = 1;
+    EnemyBuffer[index].xPos = 100;
+    EnemyBuffer[index].yPos = 0;
+}
+
+void enemySpawn(int type) {
+    int i = enemyFindEmptySlot();
+    if (i < 0 || EnemySpawnTick != 0) {
+        return;
+    }
+
+    EnemySpawnTick = ENEMY_SPAWN_TICK;
+    EnemyBuffer[i].spawned = 1;
+    EnemyBuffer[i].type = type;
+    if (type == ENEMY_TYPE_CACTUS) {
+        SpawnCactus(i);
+    }
+    else {
+        SpawnBird(i);
     }
 }

@@ -30,10 +30,10 @@ int main() {
             playerJump(&player);
         }
         else if (input == '[') {
-            enemySpawnCactus();
+            enemySpawn(ENEMY_TYPE_CACTUS);
         }
         else if (input == ']') {
-            enemySpawnBird();
+            enemySpawn(ENEMY_TYPE_BIRD);
         }
 
         // Draw screen

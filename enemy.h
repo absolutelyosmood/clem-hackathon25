@@ -9,6 +9,7 @@
 #define ENEMY_START_Y 10
 #define ENEMY_MAX_SPAWN 5
 #define ENEMY_COLLISION_X 10
+#define ENEMY_SPAWN_TICK 30
 
 #define ENEMY_TYPE_NULL -1
 #define ENEMY_TYPE_CACTUS 0
@@ -46,8 +47,8 @@ typedef ObjEnemy objCactus;
 
 void enemyBufferInit();
 int enemyDraw(int *type);
-void enemySpawnCactus();
-void enemySpawnBird();
+void enemySpawn(int type);
+void enemyIncreaseSpeed(int amount);
 
 
 #endif
