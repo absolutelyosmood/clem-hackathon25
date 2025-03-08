@@ -29,7 +29,7 @@ int main() {
         }
 
         playerDraw(&player);
-        //groundDraw(&ground,PLAYER_Y + player.frame.height - 1);
+        groundDraw(&ground,PLAYER_Y + player.frame.height);
 
         update();
     }

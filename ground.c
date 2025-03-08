@@ -1,7 +1,7 @@
 #include "ground.h"
 
 void groundCreate(objBox *ground) {
-    ground->width = 100;
+    ground->width = 99;
     ground->height = 1;
     ground->str = groundFrame;
 }
