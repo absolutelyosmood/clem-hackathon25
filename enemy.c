@@ -67,23 +67,13 @@ int enemyDraw(int *type) {
     return collisionDetected;
 }
 
-// void enemySpawn() {
-//     int i = enemyFindEmptySlot();
-//     if (i != -1) {
-//         EnemyBuffer[i].spawned = 1;
-//         EnemyBuffer[i].speed = 1;
-//         EnemyBuffer[i].xPos = 100;
-//         EnemyBuffer[i].type = ENEMY_TYPE_CACTUS;
-//     }
-// }
-
 static void SpawnCactus(int index) {
     EnemyBuffer[index].frame.height = ENEMY_CACTUS_HEIGHT;
     EnemyBuffer[index].frame.width = ENEMY_CACTUS_WIDTH;
     EnemyBuffer[index].frame.str = cactusFrame;
 
     EnemyBuffer[index].xPos = 100;
-    EnemyBuffer[index].yPos = 9;
+    EnemyBuffer[index].yPos = 10;
 }
 
 static void SpawnBird(int index) {

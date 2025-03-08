@@ -4,7 +4,6 @@
 #include "objBox.h"
 #include "player.h"
 
-#define ENEMY_BASE_Y 9
 #define ENEMY_START_X 100
 #define ENEMY_START_Y 10
 #define ENEMY_MAX_SPAWN 5
