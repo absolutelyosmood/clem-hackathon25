@@ -11,18 +11,29 @@ void setup_curses();
 void unset_curses();
 void update();
 
-objBox ground;
-ObjPlayer player;
+void GameRuntime();
 
 int main() {
     setup_curses();
 
+    GameRuntime();
+
+    unset_curses();
+}
+
+void GameRuntime() {
+    // Declarations
+    objBox ground;
+    ObjPlayer player;
+    int alive = TRUE, collision = 0, type;
+    char input;
+
+    // Initialize environment
     enemyBufferInit();
     groundCreate(&ground);
     playerCreate(&player);
-    
-    int alive = TRUE, collision = 0, type;
-    char input;
+
+    // Runtime
     while(alive) {
         // Get input from user
         input = getch();
@@ -34,6 +45,9 @@ int main() {
         }
         else if (input == ']') {
             enemySpawn(ENEMY_TYPE_BIRD);
+        }
+        else if (input == 'x') {
+            player.jump = 0;
         }
 
         // Draw screen
@@ -50,7 +64,6 @@ int main() {
         update();
     }
 
-    unset_curses();
 }
 
 void update(){
