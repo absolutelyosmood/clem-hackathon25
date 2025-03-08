@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #include "player.h"
 #include "ground.h"
@@ -13,6 +14,9 @@ void unset_curses();
 void update();
 
 void GameRuntime();
+int score = 0;
+char *score_text;
+
 
 int main() {
     setup_curses();
@@ -37,6 +41,7 @@ void GameRuntime() {
     enemyBufferInit();
     groundCreate(&ground);
     playerCreate(&player);
+    score_text = (char*)malloc(sizeof(char)*30);
 
     // Runtime
     while(alive) {
@@ -53,6 +58,9 @@ void GameRuntime() {
         }
         else if (input == 'x') {
             player.jump = 0;
+        }
+        else if (input == 'q') {
+          break;
         }
 
         // Draw screen
@@ -74,6 +82,9 @@ void GameRuntime() {
 void update(){
     refresh();
     napms(1000 / FPS);
+    score++;
+    sprintf(score_text, "Score: %d", score);
+    mvaddstr(0,100, score_text);
 }
 
 // Sets up the curses terminal, displaying game output
@@ -83,6 +94,7 @@ void setup_curses() {
     noecho();
     keypad(stdscr, true);
     nodelay(stdscr, TRUE);
+    free(score_text);
 }
   
 // Takes down the curses terminal
