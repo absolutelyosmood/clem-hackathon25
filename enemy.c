@@ -42,7 +42,11 @@ int enemyDraw() {
             EnemyBuffer[i].xPos = EnemyBuffer[i].xPos - EnemyBuffer[i].speed;
             objBoxDraw(&EnemyBuffer[i].frame,ENEMY_BASE_Y,EnemyBuffer[i].xPos);
 
-            if (EnemyBuffer[i].xPos < ENEMY_COLLISION_X) {
+            if (EnemyBuffer[i].xPos <= 0) {
+                EnemyBuffer[i].spawned = 0;
+                objBoxClear(&EnemyBuffer[i].frame,ENEMY_BASE_Y,EnemyBuffer[i].xPos);
+            }
+            else if (EnemyBuffer[i].xPos < ENEMY_COLLISION_X) {
                 collisionDetected = 1;
             }
         }
