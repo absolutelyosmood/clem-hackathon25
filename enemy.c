@@ -22,7 +22,17 @@ void enemyBufferInit() {
     }
 }
 
-// void enemySpawn() {
-//     int slot = enemyFindEmptySlot();
+/*
+iterate through each enemy in the buffer
+if enemy exist get its shift amount
 
-// }
+return value indicating if it passes a given x value
+*/
+int enemyDraw() {
+
+}
+
+void enemySpawn() {
+    int slot = enemyFindEmptySlot();
+
+}
