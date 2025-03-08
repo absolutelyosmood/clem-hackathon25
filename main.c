@@ -20,6 +20,7 @@ int main() {
     while (TRUE) {
         objMenuDraw();
         GameRuntime();
+        clear();
     }
 
     unset_curses();
