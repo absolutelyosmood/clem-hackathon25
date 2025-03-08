@@ -20,7 +20,7 @@ void objBoxDraw(objBox *box, int startY, int startX) {
 
 void objBoxShift(objBox *box) {
     char temp;
-    int index, next;
+    int index;
     for (int y = 0; y < box->height; y++) {
         for (int x = 1; x < box->width; x++) {
             index = (y * box->width) + x;

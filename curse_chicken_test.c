@@ -14,7 +14,7 @@ void setup_curses();
 void unset_curses();
 void update();
 
-#define FPS 30
+#define FPS 60
 
 #define PLAYER_MAX_TICK 60
 #define PLAYER_BASE_X 0
@@ -60,23 +60,18 @@ void playerDraw(ObjPlayer *player) {
     }
 }
 
-objBox cactus = {100, 1, "                                                                                                    "};
-
-void cactusSpawn(int y) {
-    cactus.str[cactus.width - 1] = '|';
-}
-
-
 int main() {
     setup_curses();
     
     ObjPlayer player;
     playerCreate(&player);
 
-    char groundStr[] = {'=','=','-','-','+','+','-','-','=','='};
+    char groundStr[] = {'=','=','-','-','+','+','-','-','=','=','=','=','-','-','+','+','-','-','=','='};
     //objBoxFill(PLAYER_BASE_Y + player.box.width - 1,0,100,1,'=');
-    objBox ground = {.width=10,.height=1,.str=groundStr};
+    objBox ground = {.width=20,.height=1,.str=groundStr};
     
+    int x = 0;
+
     char input;
     while(TRUE) {
         input = getch();
@@ -84,7 +79,8 @@ int main() {
             player.jump = 1;
         }
 
-        objBoxDraw(&ground,5,5);
+        objBoxClear(&ground,20,x);
+        objBoxDraw(&ground,20,++x);
         objBoxShift(&ground);
 
         playerDraw(&player);
