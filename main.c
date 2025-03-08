@@ -41,7 +41,8 @@ void update(){
     refresh();
     napms(1000 / FPS);
 }
-  
+
+// Sets up the curses terminal, displaying game output
 void setup_curses() {
     initscr();
     cbreak();
@@ -50,7 +51,7 @@ void setup_curses() {
     nodelay(stdscr, TRUE);
 }
   
-  
+// Takes down the curses terminal
 void unset_curses() {
     keypad(stdscr, false);
     nodelay(stdscr, false);
