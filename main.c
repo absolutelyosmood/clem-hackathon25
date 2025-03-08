@@ -20,21 +20,28 @@ int main() {
     enemyBufferInit();
     groundCreate(&ground);
     playerCreate(&player);
-
-    enemySpawn();
     
-    int alive = TRUE, collision = 0;
+    int alive = TRUE, collision = 0, type;
     char input;
     while(alive) {
         input = getch();
         if (input ==' ') {
             playerJump(&player);
         }
+        else if (input == '[') {
+            enemySpawnCactus();
+        }
+        else if (input == ']') {
+            enemySpawnBird();
+        }
 
         playerDraw(&player);
         groundDraw(&ground,PLAYER_Y + player.frame.height);
-        collision = enemyDraw();
-        if (collision == 1 && player.jump == 0) {
+        collision = enemyDraw(&type);
+        if (type == ENEMY_TYPE_CACTUS && (collision == 1 && player.jump == 0)) {
+            alive = FALSE;
+        }
+        else if (type == ENEMY_TYPE_BIRD && (collision ==1 && player.jump == 1)) {
             alive = FALSE;
         }
 
