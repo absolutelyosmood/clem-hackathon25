@@ -15,7 +15,7 @@ void update();
 
 void GameRuntime();
 int score = 0;
-char *score_text;
+char score_text[10] = {' ',' ',' ',' ',' ',' ',' ',' ',' '};
 
 
 int main() {
@@ -41,7 +41,7 @@ void GameRuntime() {
     enemyBufferInit();
     groundCreate(&ground);
     playerCreate(&player);
-    score_text = (char*)malloc(sizeof(char)*30);
+    score = 0;
 
     // Runtime
     while(alive) {
@@ -83,8 +83,8 @@ void update(){
     refresh();
     napms(1000 / FPS);
     score++;
-    sprintf(score_text, "Score: %d", score);
-    mvaddstr(0,100, score_text);
+    sprintf(score_text, "Score:%d",score);
+    mvprintw(0, 90, score_text);
 }
 
 // Sets up the curses terminal, displaying game output
@@ -94,7 +94,6 @@ void setup_curses() {
     noecho();
     keypad(stdscr, true);
     nodelay(stdscr, TRUE);
-    free(score_text);
 }
   
 // Takes down the curses terminal
