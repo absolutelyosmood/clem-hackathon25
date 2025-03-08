@@ -5,6 +5,15 @@
 #define ENEMY_START_X 100
 #define ENEMY_MAX_SPAWN 5
 
+static char cactusFrame[] = {
+    ' ', ' ',  ' ', '/', '\\', ' ', ' ', ' ',
+    ' ', ' ',  ' ', '|',  '|', ' ', '/', '\\',
+    '/', '\\', ' ', '|',  '|', ' ', '|', '|',
+    '[', '=',  '=', ' ',  '|', ' ', '|', '|',
+    ' ', ' ',  ' ', '|',  ' ', '=', '=', ']',
+    ' ', ' ',  ' ', '|',  '|', '', ' ', ' ',
+};
+
 typedef struct _ObjEnemy {
     int tickCur, xPos, speed, spawned;
     objBox frame;
