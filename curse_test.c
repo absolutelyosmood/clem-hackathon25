@@ -2,6 +2,14 @@
 #include <curses.h>
 #include <unistd.h>
 
+typedef struct _objBox {
+  int width, height;
+  char *str;
+} objBox;
+
+void objBoxDraw(objBox *box, int startY, int startX);
+void objBoxClear(objBox *box, int startY, int startX);
+
 void setup_curses();
 void unset_curses();
 void update();
@@ -10,14 +18,6 @@ void update();
 int glob_x = 0;
 int switch_pos = 10;
 int glob_y = 0;
-
-void clearBox(int startY, int startX, int height, int width) {
-    for (int y = startY; y < startY + height; y++) {
-        for (int x = startX; x < startX + width; x++) {
-            mvaddch(y, x, ' ');
-        }
-    }
-}
 
 int main(int argc, char *argv[])
 {
@@ -29,6 +29,28 @@ int main(int argc, char *argv[])
   unset_curses();
 }
 
+/*
+update is Jumping if it is not already set
+if it is set increment the tick
+*/
+
+void objBoxDraw(objBox *box, int startY, int startX) {
+  for (int y = startY; y < startY + box->height; y++) {
+      for (int x = startX; x < startX + box->width; x++) {
+          mvaddch(y, x, box->str[x + y]);
+      }
+  }
+  return;
+}
+
+void objBoxClear(objBox *box, int startY, int startX) {
+  for (int y = startY; y < startY + box->height; y++) {
+      for (int x = startX; x < startX + box->width; x++) {
+          mvaddch(y, x, ' ');
+      }
+  }
+  return;
+}
 
 void update(){
   mvaddch(glob_y, glob_x++, 'a');
