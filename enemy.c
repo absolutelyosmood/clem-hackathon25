@@ -19,6 +19,9 @@ int enemyFindEmptySlot() {
 void enemyBufferInit() {
     for (int i = 0; i < ENEMY_MAX_SPAWN; i++) {
         EnemyBuffer[i].spawned = 0;
+        EnemyBuffer[i].frame.str = cactusFrame;
+        EnemyBuffer[i].frame.width = 8;
+        EnemyBuffer[i].frame.height = 6;
     }
 }
 
@@ -28,11 +31,20 @@ if enemy exist get its shift amount
 
 return value indicating if it passes a given x value
 */
-int enemyDraw() {
+void enemyDraw() {
+    for (int i = 0; i < ENEMY_MAX_SPAWN; i++) {
+        if (EnemyBuffer[i].spawned == 1) {
+            objBoxClear(&EnemyBuffer[i].frame,ENEMY_BASE_Y,EnemyBuffer[i].xPos);
 
+            EnemyBuffer[i].xPos - EnemyBuffer[i].speed;
+            objBoxDraw(&EnemyBuffer[i].frame,ENEMY_BASE_Y,EnemyBuffer[i].xPos);
+        }
+    }
 }
 
 void enemySpawn() {
-    int slot = enemyFindEmptySlot();
-
+    int i = enemyFindEmptySlot();
+    EnemyBuffer[i].speed = 1;
+    EnemyBuffer[i].tickCur = 0;
+    EnemyBuffer[i].xPos = 100;
 }
