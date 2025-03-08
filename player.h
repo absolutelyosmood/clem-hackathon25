@@ -1,4 +1,7 @@
-#include "objBox.h";
+#ifndef _PLAYER_H
+#define _PLAYER_H
+
+#include "objBox.h"
 
 #define PLAYER_TICK_DELAY 10
 #define PLAYER_TICK_AIR 60
@@ -21,6 +24,8 @@ static char playerFrame[] = {
     ' ', ' ', ' ', '/', '\\', ' ', ' ',
 };
 
-void playerCreate(ObjPlayer *player, int x, int y);
+void playerCreate(ObjPlayer *player);
 void playerJump(ObjPlayer *player);
 void playerDraw(ObjPlayer *player);
+
+#endif

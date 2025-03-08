@@ -5,7 +5,7 @@
 #define PLAYER_BASE_Y 10
 #define PLAYER_BASE_JUMP 10
 
-void playerCreate(ObjPlayer *player, int x, int y) {
+void playerCreate(ObjPlayer *player) {
     player->jump = 0;
     player->tickCur = 0;
     player->frame.width = 7;
