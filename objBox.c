@@ -19,8 +19,15 @@ void objBoxDraw(objBox *box, int startY, int startX) {
     return;
 }
 
+// copies a src box into a dst box (SRC MUST HAVE SAME OR SMALLER WIDTH HEIGHT)
 void objBoxCopy(objBox *src, objBox *dst, int startX, int startY) {
-
+    char character;
+    for (int y = 0; y < src->height; y++) {
+        for (int x = 0; x < src->width; x++) {
+            character = src->str[y * src->width + x];
+            mvaddch(y + startY, x + startX, dst->str[character]);
+        }
+    }
 }
 
 // Shifts a given box to the left by one (wraps around)
