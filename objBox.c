@@ -19,6 +19,7 @@ void objBoxDraw(objBox *box, int startY, int startX) {
     return;
 }
 
+// NEED TO TEST THIS
 // copies a src box into a dst box (SRC MUST HAVE SAME OR SMALLER WIDTH HEIGHT)
 void objBoxCopy(objBox *src, objBox *dst, int startX, int startY) {
     char character;
@@ -50,4 +51,8 @@ void objBoxShift(objBox *box) {
 void objBoxClear(objBox *box, int startY, int startX) {
     objBoxFill(startY,startX,box->width,box->height,' ');
     return;
+}
+
+void objBoxPad(objBox *box, char character) {
+    objBoxFill(0,0,box->width,box->height,character);
 }
