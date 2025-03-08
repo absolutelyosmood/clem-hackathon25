@@ -1,0 +1,5 @@
+/*
+keep an array of a maximum amount of enemys
+keep a tick cooldown to stop from spawning too many enemys
+
+*/

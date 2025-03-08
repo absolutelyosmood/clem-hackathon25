@@ -2,7 +2,7 @@
 #include <unistd.h>
 
 #include "objBox.h"
-#include "player.h"
+//#include "player.h"
 
 /*
 have an array of potential values
@@ -71,8 +71,6 @@ int main() {
     //objBoxFill(PLAYER_BASE_Y + player.box.width - 1,0,100,1,'=');
     objBox ground = {.width=20,.height=1,.str=groundStr};
     
-    int x = 0;
-
     char input;
     while(TRUE) {
         input = getch();
@@ -80,8 +78,7 @@ int main() {
             player.jump = 1;
         }
 
-        objBoxClear(&ground,20,x);
-        objBoxDraw(&ground,20,++x);
+        objBoxDraw(&ground,20,0);
         objBoxShift(&ground);
 
         playerDraw(&player);

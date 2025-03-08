@@ -1,5 +1,6 @@
 #include "objBox.h"
 
+// Fill an area of box area of space with a certain character
 void objBoxFill(int startY, int startX, int width, int height, char character) {
     for (int y = startY; y < startY + height; y++) {
         for (int x = startX; x < startX + width; x++) {
@@ -8,6 +9,7 @@ void objBoxFill(int startY, int startX, int width, int height, char character) {
     }
 }
 
+// Draws a given box at a top left coordinate (x,y).
 void objBoxDraw(objBox *box, int startY, int startX) {
     for (int y = startY; y < startY + box->height; y++) {
         for (int x = startX; x < startX + box->width; x++) {
@@ -17,7 +19,11 @@ void objBoxDraw(objBox *box, int startY, int startX) {
     return;
 }
 
+void objBoxCopy(objBox *src, objBox *dst, int startX, int startY) {
 
+}
+
+// Shifts a given box to the left by one (wraps around)
 void objBoxShift(objBox *box) {
     char temp;
     int index;
@@ -32,7 +38,8 @@ void objBoxShift(objBox *box) {
     }
     return;
 }
-  
+
+// Clears an area of the screen
 void objBoxClear(objBox *box, int startY, int startX) {
     objBoxFill(startY,startX,box->width,box->height,' ');
     return;
